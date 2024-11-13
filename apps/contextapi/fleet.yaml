@@ -9,3 +9,9 @@ targetCustomizations:
         role: production
     kustomize:
       dir: overlays/production
+  - name: gissur-local
+    clusterSelector:
+      matchLabels:
+        role: gissur-local
+    kustomize:
+      dir: overlays/gissur-local
