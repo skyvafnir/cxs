@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: isl-hotel-streaming-client
+spec:
+  selector:
+    matchLabels:
+      app: isl-hotel-streaming-client
+      tier: api
+  template:
+    metadata:
+      labels:
+        app: isl-hotel-streaming-client
+        tier: api
+    spec:
+      containers:
+        - name: app
+          image: quicklookup/streaming-client:64e2e5e
+          command:
+            - /bin/bash
+          args:
+            - "-c"
+            - "ln -s /mnt/pvc/offset.txt /src/offset.txt && npm start"
+          resources:
+            requests:
+              cpu: 200m
+              memory: 200Mi
+          env:
+            - name: CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: isl-hotel-streaming-client-secret
+                  key: CLIENT_SECRET
+            - name: INTEGRATION_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: isl-hotel-streaming-client-secret
+                  key: INTEGRATION_PASSWORD
+            - name: APP_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: isl-hotel-streaming-client-secret
+                  key: APP_KEY
+            - name: KAFKA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: isl-hotel-streaming-client-secret
+                  key: KAFKA_PASSWORD
+          envFrom:
+            - configMapRef:
+                name: isl-hotel-streaming-client-config
+          volumeMounts:
+            - name: offset-volume
+              mountPath: /mnt/pvc
+              subPath: offset.txt
+      volumes:
+        - name: offset-volume
+          persistentVolumeClaim:
+            claimName: isl-hotel-streaming-client-pvc
+      imagePullSecrets:
+        - name: dockerlock

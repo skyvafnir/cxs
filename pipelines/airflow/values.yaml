@@ -2,7 +2,7 @@ airflow:
   legacyCommands: false
   image:
     repository: quicklookup/airflow-pipelines
-    tag: c01f5b4
+    tag: 31a59b8
     pullPolicy: IfNotPresent
     pullSecret: "dockerlock"
 
@@ -75,7 +75,10 @@ airflow:
     - name: CLICKHOUSE_DB
       value: "default"
     - name: CLICKHOUSE_HOST
-      value: "10.180.122.32"
+      valueFrom:
+        secretKeyRef:
+          name: airflow
+          key: clickhouse-host
     - name: CLICKHOUSE_USER
       value: "default"
     - name: CLICKHOUSE_PASSWORD
