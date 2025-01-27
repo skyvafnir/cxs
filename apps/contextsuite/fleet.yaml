@@ -8,3 +8,9 @@ targetCustomizations:
         role: production
     kustomize:
       dir: overlays/production
+  - name: skyvafnir-dev
+    clusterSelector:
+      matchLabels:
+        role: skyvafnir-dev
+    kustomize:
+      dir: overlays/skyvafnir-dev
