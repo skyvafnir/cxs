@@ -14,5 +14,5 @@ targetCustomizations:
       matchLabels:
         role: skyvafnir-dev
     kustomize:
-      dir: overlays/${ global.fleet.clusterLabels.role }
+      dir: overlays/skyvafnir-dev
 
