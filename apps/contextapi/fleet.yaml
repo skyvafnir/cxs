@@ -14,4 +14,5 @@ targetCustomizations:
       matchLabels:
         role: skyvafnir-dev
     kustomize:
-      dir: overlays/skyvafnir-dev
+      dir: overlays/${ get .ClusterLabels "role" }
+
