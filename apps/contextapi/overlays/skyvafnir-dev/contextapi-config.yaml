@@ -35,9 +35,10 @@ data:
   SOLR_HOST: 'solr.data'
   SOLR_PROTOCALL: 'http'
 
-  # Clickhouse
-  CLICKHOUSE_CONNECTION: "<NOT_SET>" #'http://10.180.122.32:8123'
-  CLICKHOUSE_USER: 'default'
+  # Clickhouse  
+  CLICKHOUSE_CONNECTION: "http://clickhouse.clickhouse" #'http://10.180.122.32:8123'
+  CLICKHOUSE_USER: "clickhouse_operator" # local operator user
+
 
   GRAPHQL_SERVER_PORT: '4001'
   GRAPHQL_SERVER_PATH: '/context'
