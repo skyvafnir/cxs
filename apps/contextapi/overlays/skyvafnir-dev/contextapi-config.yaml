@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: contextapi-config
   # NO SECRETS SHOULD BE STORED IN CONFIGMAPS [See the docs](/README.md))
+  labels:
+    env: skyvafnir-dev
 data:
   ZONE: 'dev_sbx'
 
