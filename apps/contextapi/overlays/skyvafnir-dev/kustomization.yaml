@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - contextapi-config.yaml
 - contextapi-ingress.yml
-- /workspaces/source/apps/contextapi/base
+- apps/contextapi/base
