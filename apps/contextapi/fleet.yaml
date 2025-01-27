@@ -9,9 +9,9 @@ targetCustomizations:
         role: production
     kustomize:
       dir: overlays/production
-  - name: gissur-local
+  - name: skyvafnir-dev
     clusterSelector:
       matchLabels:
-        role: gissur-local
+        role: skyvafnir-dev
     kustomize:
-      dir: overlays/gissur-local
+      dir: overlays/skyvafnir-dev
